@@ -59,6 +59,11 @@
 					<view class="operation-btn gradient-green" @tap="getPrize('getQuartePrize')">{{i18n.data.lang42}}</view>
 				</view>
 			</view>
+			<swiper class="swiper" autoplay="autoplay">
+				<swiper-item v-for="(item, index) in slideList" :key="index">
+					<image :src="item.pic" mode="scaleToFill"></image>
+				</swiper-item>
+			</swiper>
 		</view>
 		<tabbar :isCurrent="2"></tabbar>
 	</view>
@@ -72,7 +77,8 @@
 			return {
 				isBack: false,
 				isBg: true,
-				dataList: []
+				dataList: [],
+				slideList: [],
 			}
 		},
 		components: {
@@ -81,6 +87,7 @@
 		},
 		onLoad() {
 			this.getData()
+			this.getSlideData()
 		},
 		methods: {
 			getData(){
@@ -89,6 +96,14 @@
 					method: 'GET'
 				}).then(res => {
 					this.dataList = res.result
+				})
+			},
+			getSlideData(){
+				this.uniRequest({
+					url: 'slideshow',
+					method: 'GET'
+				}).then(res => {
+					this.slideList = res.result
 				})
 			},
 			getPrize(url){
@@ -127,6 +142,13 @@ uni-page-body{
 		padding: 0 30rpx 30rpx;
 		background: #292F42 url('../../static/images/bot.png') center top no-repeat;
 		background-size: contain;
+		.swiper{
+			margin-top: 40rpx;
+			image{
+				width: 100%;
+				height: 100%;
+			}
+		}
 		.data-wrap{
 			height: 306rpx;
 			background:linear-gradient(135deg,rgba(4,190,217,1) 0%,rgba(98,34,225,1) 100%);
@@ -205,7 +227,7 @@ uni-page-body{
 						color: $colorE;
 					}
 					.bot{
-						font-size: $fontE;
+						font-size: $fontH;
 						color: $colorA;
 						margin-top: 4rpx;
 					}

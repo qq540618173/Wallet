@@ -73,6 +73,10 @@
             "path" : "pages/service/customer",
             "style" : {}
         }
+        ,{
+            "path" : "pages/my/authentication",
+            "style" : {}
+        }
     ],
 	"globalStyle": {
 		"navigationStyle": "custom"

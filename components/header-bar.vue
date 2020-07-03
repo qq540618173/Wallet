@@ -4,8 +4,8 @@
             <view v-if="isBack" @tap="goBack" class="back-btn"></view>
 			<view class="title">{{title}}</view>
 			<view v-if="isBack" class="right"></view>
-			<view v-if="isHistory" class="history" @tap="gotoPage">
-				<text>{{i18n.header.header26}}</text>
+			<view v-if="isSlot" class="isslot">
+				<slot name="text"></slot>
 			</view>
         </view>
     </view>
@@ -22,7 +22,7 @@
             title: { type: String, default: '' },
 			isBack: { type: [Boolean, String], default: true },
 			isBg: { type: [Boolean, String], default: false },
-			isHistory: { type: [Boolean, String], default: false },
+			isSlot: { type: [Boolean, String], default: false },
         },
         computed: {
 			i18n () {
@@ -32,12 +32,7 @@
         methods: {
             goBack() {
                 uni.navigateBack()
-            },
-			gotoPage(){
-				uni.navigateTo({
-					url: '/pages/index/history'
-				})
-			}
+            }
         }
     }
 </script>
@@ -80,7 +75,7 @@
 				width: 52rpx;
 				height: 48rpx;
 			}
-			.history{
+			.isslot{
 				position: absolute;
 				font-size: $fontI;
 				color: $colorA;

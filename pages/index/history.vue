@@ -8,15 +8,17 @@
 					<view class="history-box">
 						<view class="top">
 							<text>{{i18n.history['history'+item.type]}}</text>
+							<text>{{i18n.history.history14}}</text>
 						</view>
-						<view class="bot" :class="item.state>0?'minus':'plus'">
-							<text>{{item.state>0?'-':'+'}}{{item.amount + item.coin}}</text>
+						<view class="bot">
+							<text :class="item.state>0?'minus':'plus'">{{item.state>0?'-':'+'}}{{item.amount + item.coin}}</text>
+							<text>{{item.balance+item.coin}}</text>
 						</view>
 					</view>
 				</view>
 			</scroll-view>
 			<view class="nodata" v-if="!historyList.length">
-				<text>暂无数据</text>
+				<text>{{i18n.history.history15}}</text>
 			</view>
 		</view>
 	</view>
@@ -98,13 +100,20 @@
 					font-size: $fontJ;
 					color: $colorA;
 					margin-bottom: 6rpx;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
 				}
 				.bot{
-					font-size: $fontG;
-					&.plus{
+					font-size: $fontI;
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					color: $colorA;
+					.plus{
 						color: #DB4D43;
 					}
-					&.minus{
+					.minus{
 						color: #33D38A;
 					}
 				}

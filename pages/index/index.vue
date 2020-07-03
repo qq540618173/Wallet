@@ -1,6 +1,8 @@
 <template>
 	<view class="index">
-		<header-bar :isBack="isBack" :isBg="isBg" :isHistory="isHistory" :title="i18n.header.header1"></header-bar>
+		<header-bar :isBack="isBack" :isBg="isBg" :isSlot="isSlot" :title="i18n.header.header1">
+			<text slot="text" @tap="gotoPage('history')">{{i18n.header.header26}}</text>
+		</header-bar>
 		<view class="content">
 			<view class="header-data">
 				<view v-for="(item, index) in indexData.acc" :key="index">{{index}}:{{item}}<text></text></view>
@@ -57,7 +59,10 @@
 						<text>{{i18n.index.lang7}}</text>
 					</view>
 				</view>
-				<view class="tips">{{i18n.index.lang8}}:{{indexData.sub_pool}}</view>
+				<view class="tips">
+					<text>{{i18n.index.lang8}}:{{indexData.sub_pool}}</text>
+					<text>{{i18n.index.lang8_1}}:{{indexData.queue_pool}}</text>
+				</view>
 				<view class="amount">
 					<view class="top">{{i18n.index.lang9}}</view>
 					<view class="mid">{{indexData.pool?indexData.pool.amount:0}}</view>
@@ -67,6 +72,11 @@
 					</view>
 				</view>
 			</view>
+			<swiper class="swiper" autoplay="autoplay">
+				<swiper-item v-for="(item, index) in slideList" :key="index">
+					<image :src="item.pic" mode="scaleToFill"></image>
+				</swiper-item>
+			</swiper>
 		</view>
 		<tabbar :isCurrent="1"></tabbar>
 	</view>
@@ -82,9 +92,10 @@
 				timer: '',
 				isBack: false,
 				isBg: true,
-				isHistory: true,
+				isSlot: true,
 				indexData: {},  //总数据
 				noticeList: [], //公告列表
+				slideList: [],
 			}
 		},
 		components: {
@@ -94,6 +105,7 @@
 		onLoad() {
 			this.getData()
 			this.getNotice()
+			this.getSlideData()
 		},
 		onShow() {
 			this.getData()
@@ -139,6 +151,14 @@
 				uni.navigateTo({
 				    url
 				});
+			},
+			getSlideData(){
+				this.uniRequest({
+					url: 'slideshow',
+					method: 'GET'
+				}).then(res => {
+					this.slideList = res.result
+				})
 			}
 		},
 		computed: {  
@@ -164,6 +184,13 @@ uni-page-body{
 		padding: 0 30rpx 30rpx;
 		background: #292F42 url('../../static/images/bot.png') center top no-repeat;
 		background-size: contain;
+		.swiper{
+			margin-top: 40rpx;
+			image{
+				width: 100%;
+				height: 100%;
+			}
+		}
 		.header-data{
 			font-size: 48rpx;
 			color: #FFFFFF;
@@ -330,6 +357,9 @@ uni-page-body{
 				color: #999999;
 				font-size: $fontJ;
 				padding: 0 22rpx;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
 			}
 			.amount{
 				margin-top: 22rpx;

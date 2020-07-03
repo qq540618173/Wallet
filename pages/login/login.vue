@@ -165,6 +165,15 @@
 </script>
 
 <style lang="scss">
+html,
+body{
+	padding: 0;
+}
+/* #ifdef H5 */
+uni-page-body{
+	padding: 0;
+}
+/* #endif */
 .login{
 	width: 100vw;
 	height: 100vh;

@@ -5,7 +5,7 @@
 			<view class="form-wrap">
 				<view class="form-wrap-top">
 					<view class="left">{{i18n.exchange.lang23}}</view>
-					<view class="right">{{indexData.acc?indexData.acc.QUSD:'0.0000'}}</view>
+					<view class="right">{{indexData}}</view>
 				</view>
 				<view class="form-wrap-bot">
 					<view class="form-item">
@@ -41,7 +41,7 @@
 					to_coin: 'USDT',
 				},
 				rate: '',             //汇率
-				indexData: '',        //QUSD数量
+				indexData: 0.000000,  //QUSD数量
 			}
 		},
 		onLoad() {
@@ -53,7 +53,7 @@
 		methods: {
 			submit(){
 				// 提交信息
-				let { current } = this
+				let { current, indexData } = this
 				this.uniRequest({
 					url: 'exchange',
 					data: {
@@ -64,13 +64,13 @@
 						title: res.message,
 						icon: 'none',
 						success: () => {
-							this.getData()
 							this.current = {
 								from_amount: '',
 								paypass: '',
 								from_coin: 'QUSD',
 								to_coin: 'USDT',
 							}
+							this.indexData = (indexData - current.from_amount).toFixed(6)
 						}
 					})
 				})
@@ -81,7 +81,7 @@
 					url: 'wallet',
 					method: 'GET'
 				}).then(res => {
-					this.indexData = res.result
+					this.indexData = res.result.acc.QUSD
 				})
 			},
 			addClass(classname){

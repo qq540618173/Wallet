@@ -1,6 +1,8 @@
 <template>
 	<view class="my">
-		<header-bar :isBack="isBack" :isBg="isBg" :title="i18n.tabbar.my"></header-bar>
+		<header-bar :isBack="isBack" :isBg="isBg" :isSlot="isSlot" :title="i18n.tabbar.my">
+			<text slot="text" @tap="gotoPage('authentication')">{{i18n.header.header27}}</text>
+		</header-bar>
 		<view class="content" :class="{'top': i18n.lang}">
 			<view class="userinfo">
 				<view class="head-image">
@@ -129,6 +131,7 @@
 				isBg: true,       //显示背景
 				modalActive: false,    //modal弹出
 				userInfo: '',
+				isSlot: true,
 			}
 		},
 		components: {
