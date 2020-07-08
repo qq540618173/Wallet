@@ -10,7 +10,12 @@
 	export default {
 		data() {
 			return {
-				
+				isBack: false,
+				webviewStyles: {
+					iframe: {
+						height: '100% !important'
+					}
+				}
 			}
 		},
 		components: {

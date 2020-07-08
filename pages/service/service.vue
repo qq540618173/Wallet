@@ -30,7 +30,6 @@
 						<!-- <view class="read">
 							<text>{{i18n.service.lang43}}</text>
 						</view> -->
-						<!-- <view class="download" @tap="download(item.pic, index)" v-show="!hideArray.includes(index)"></view> -->
 						<view class="download" @tap="download(item.pic, index)"></view>
 					</view>
 				</scroll-view>
@@ -76,25 +75,6 @@
 				})
 			},
 			download(url, index){
-				// 下载文件
-				// this.hideArray.push(index)
-				// uni.downloadFile({
-				//     url,
-				//     success: (res) => {
-				//         if (res.statusCode === 200) {
-				// 			this.hideArray.splice(this.hideArray.findIndex(item => item == index), 1)
-				// 			uni.saveFile({
-				// 				tempFilePath: res.tempFilePath,
-				// 				success: () => {
-				// 					uni.showToast({
-				// 						title: '下载成功',
-				// 						icon: 'none'
-				// 					})
-				// 				}
-				// 			})
-				//         }
-				//     }
-				// })
 				plus.runtime.openURL(url, function(){
 					uni.showToast({
 						title: '下载文件失败',

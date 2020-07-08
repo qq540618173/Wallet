@@ -72,7 +72,7 @@
 					</view>
 				</view>
 			</view>
-			<swiper class="swiper" autoplay="autoplay">
+			<swiper class="swiper swiper1" autoplay="autoplay">
 				<swiper-item v-for="(item, index) in slideList" :key="index">
 					<image :src="item.pic" mode="scaleToFill"></image>
 				</swiper-item>
@@ -184,7 +184,7 @@ uni-page-body{
 		padding: 0 30rpx 30rpx;
 		background: #292F42 url('../../static/images/bot.png') center top no-repeat;
 		background-size: contain;
-		.swiper{
+		.swiper1{
 			margin-top: 40rpx;
 			image{
 				width: 100%;
