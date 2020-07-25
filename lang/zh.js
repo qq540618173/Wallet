@@ -12,6 +12,7 @@ export default {
 			lang7: '停止挖矿',
 			lang8: '预约数额',
 			lang8_1: '排队数',
+			lang8_2: '更多',
 			lang9: '矿池数额(QUSD)',
 			lang10: '出矿倒计时',
 			lang11: '天',

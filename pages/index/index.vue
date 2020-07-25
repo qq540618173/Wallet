@@ -43,7 +43,7 @@
 						</view>
 					</view>
 					<view class="more" @tap="gotoPage('/pages/my/newslist')">
-						<text>更多</text>
+						<text>{{i18n.index.lang8_2}}</text>
 					</view>
 				</view>
 			</view>

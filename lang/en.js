@@ -12,6 +12,7 @@ export default {
 			lang7: 'Stop mining',
 			lang8: 'The reservation amount',
 			lang8_1: 'Number of queues',
+			lang8_2: 'more',
 			lang9: 'Ore pool amount(QUSD)',
 			lang10: 'Countdown to mine exit',
 			lang11: 'days',

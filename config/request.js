@@ -56,7 +56,7 @@ function uniRequest(obj){
 					}else{
 						setTimeout(()=>{
 							uni.showToast({
-								title: res.data.message,
+								title: res.data.message.code?res.data.message.message:res.data.message,
 								icon: 'none'
 							})
 						}, 500)
