@@ -11,7 +11,7 @@ export default {
 			lang6: '参与挖矿',
 			lang7: '停止挖矿',
 			lang8: '预约数额',
-			lang8_1: '排队数',
+			lang8_1: '排队数额',
 			lang8_2: '更多',
 			lang9: '矿池数额(QUSD)',
 			lang10: '出矿倒计时',
@@ -19,7 +19,10 @@ export default {
 			lang12: '保存二维码',
 			lang13: '复制地址',
 			lang14: '复制邀请码',
-			lang15: 'QUSD钱包地址'
+			lang15: 'QUSD钱包地址',
+			lang15_1: '停止挖矿之后您将不会产生任何收益，本金自动退到您账户！',
+			lang15_2: '取消',
+			lang15_3: '确认',
 		},
 		withdrawal: {
 			//提币
@@ -124,6 +127,8 @@ export default {
 			lang89: '请输入新的登录密码',
 			lang90: '请确认新的登录密码',
 			lang91: '修改',
+			lang91_1: '请输入交易密码',
+			lang91_2: '请确认交易密码',
 		},
 		history: {
 			history0: '充值',
@@ -136,9 +141,9 @@ export default {
 			history7: '动态奖',
 			history8: '月奖',
 			history9: '季度奖',
-			history10: '后台充值',
-			history11: '静态奖励',
-			history12: '挖矿出局',
+			history10: '充值',
+			history11: '静态QUSD收益自动回购',
+			history12: '矿池出场QUSD本金返回账户',
 			history13: '预约驳回',
 			history14: '余额',
 			history15: '暂无数据',

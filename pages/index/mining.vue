@@ -69,7 +69,7 @@
 								uni.reLaunch({
 									url: '/pages/index/index'
 								})
-							}, 1000)
+							}, 500)
 						}
 					})
 				})

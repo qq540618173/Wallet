@@ -27,6 +27,9 @@
 					<text>{{i18n.index.lang4}}</text>
 				</view>
 				<view class="notice">
+					<view class="notice-text">
+						<text>公告栏</text>
+					</view>
 					<view class="notice-box">
 						<view class="uni-padding-wrap">
 							<view class="page-section swiper">
@@ -54,7 +57,7 @@
 						<image src="../../static/images/icon11.png"></image>
 						<text>{{i18n.index.lang6}}</text>
 					</view>
-					<view class="mine-item gradient-green" @tap="stopMine">
+					<view class="mine-item gradient-green" @tap="showModal">
 						<image src="../../static/images/icon12.png"></image>
 						<text>{{i18n.index.lang7}}</text>
 					</view>
@@ -72,13 +75,29 @@
 					</view>
 				</view>
 			</view>
-			<swiper class="swiper swiper1" autoplay="autoplay">
-				<swiper-item v-for="(item, index) in slideList" :key="index">
-					<image :src="item.pic" mode="scaleToFill"></image>
-				</swiper-item>
-			</swiper>
 		</view>
 		<tabbar :isCurrent="1"></tabbar>
+		<view class="mask" v-if="modalActive"></view>
+		<view class="modal" :class="{'active': modalActive}">
+			<view class="title">
+				<text>{{i18n.index.lang7}}</text>
+			</view>
+			<view class="form-item">
+				<input type="text" v-model="payPass" :password="active" :placeholder="i18n.my.lang73" />
+				<view class="password" :class="{'active': !active}" @tap="addClass('active')"></view>
+			</view>
+			<view class="modal-tips">
+				<text>{{i18n.index.lang15_1}}</text>
+			</view>
+			<view class="operation-wrap">
+				<view class="operation-btn gradient-green" @tap="cancel">
+					<text>{{i18n.index.lang15_2}}</text>
+				</view>
+				<view class="operation-btn gradient-blue" @tap="stopMine">
+					<text>{{i18n.index.lang15_3}}</text>
+				</view>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -95,7 +114,9 @@
 				isSlot: true,
 				indexData: {},  //总数据
 				noticeList: [], //公告列表
-				slideList: [],
+				modalActive: false,
+				active: true,
+				payPass: '',
 			}
 		},
 		components: {
@@ -105,7 +126,6 @@
 		onLoad() {
 			this.getData()
 			this.getNotice()
-			this.getSlideData()
 		},
 		onShow() {
 			this.getData()
@@ -132,33 +152,39 @@
 					this.noticeList = res.result.data
 				})
 			},
+			showModal(){
+				this.modalActive = true
+			},
+			cancel(){
+				this.payPass = ''
+				this.modalActive = false
+			},
 			stopMine(){
 				// 停止挖矿
+				let { payPass } = this
 				this.uniRequest({
 					url: 'stopMine',
-					method: 'GET'
+					data: {
+						payPass
+					}
 				}).then(res => {
 					uni.showToast({
 						title: '已停止挖矿',
 						icon: 'none',
 						success: res => {
 							this.getData()
+							this.cancel()
 						}
 					})
 				})
+			},
+			addClass(classname){
+				this[classname] = !this[classname]
 			},
 			gotoPage(url){
 				uni.navigateTo({
 				    url
 				});
-			},
-			getSlideData(){
-				this.uniRequest({
-					url: 'slideshow',
-					method: 'GET'
-				}).then(res => {
-					this.slideList = res.result
-				})
 			}
 		},
 		computed: {  
@@ -270,7 +296,7 @@ uni-page-body{
 		}
 		.notice{
 			width: 400rpx;
-			padding-left: 74rpx;
+			padding-left: 64rpx;
 			box-sizing: border-box;
 			background: url('../../static/images/icon8.png') 18rpx no-repeat;
 			background-size: 40rpx 40rpx;
@@ -288,6 +314,11 @@ uni-page-body{
 				top: 50%;
 				transform: translateY(-50%);
 			}
+			.notice-text{
+				font-size: $fontJ;
+				color: $colorB;
+				padding-right: 20rpx;
+			}
 		}
 		.notice-box{
 			height: 68rpx;
@@ -297,10 +328,12 @@ uni-page-body{
 				height: 68rpx;
 				.notice-item{
 					height: 68rpx;
+					line-height: 68rpx;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 					font-size: $fontJ;
 					color: $colorB;
-					display: flex;
-					align-items: center;
 				}
 			}
 		}
@@ -350,13 +383,13 @@ uni-page-body{
 				}
 			}
 			.tips{
-				margin-top: 16rpx;
+				margin-top: 32rpx;
 				background-color: #1C1F2A;
 				border-radius: 8rpx;
-				line-height: 50rpx;
+				line-height: 100rpx;
 				color: #999999;
-				font-size: $fontJ;
-				padding: 0 22rpx;
+				font-size: $fontH;
+				padding: 0 30rpx;
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
@@ -388,6 +421,62 @@ uni-page-body{
 						height: 30rpx;
 						margin-right: 12rpx;
 					}
+				}
+			}
+		}
+	}
+	.mask{
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: rgba(0,0,0, .4);
+		z-index: 998;
+	}
+	.modal{
+		width: 100vw;
+		padding: 42rpx 30rpx 48rpx;
+		border-radius: 20rpx 20rpx 0rpx 0rpx;
+		background-color: $colorC;
+		position: fixed;
+		bottom: 100rpx;
+		z-index: 999;
+		box-shadow: 0 0 20rpx #000000;
+		box-sizing: border-box;
+		transform: translateY(200%);
+		transition: all 0.5s;
+		&.active{
+			display: block;
+			transform: translateY(0);
+			transition: all 0.5s;
+		}
+		.title{
+			text-align: center;
+			font-size: $fontE;
+			color: $colorG;
+			margin-bottom: 42rpx;
+		}
+		.modal-tips{
+			font-size: $fontI;
+			color: $colorA;
+			margin-top: 28rpx;
+		}
+		.operation-wrap{
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			.operation-btn{
+				height: 104rpx;
+				line-height: 104rpx;
+				border-radius: 8rpx;
+				text-align: center;
+				font-size: $fontG;
+				color: $colorA;
+				margin-top: 100rpx;
+				flex: 1;
+				&:first-child{
+					margin-right: 20rpx;
 				}
 			}
 		}

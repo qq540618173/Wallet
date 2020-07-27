@@ -26,6 +26,16 @@
 				<input type="text" :password="!currentClass" :placeholder="i18n.login.lang87" v-model="current.password1" placeholder-class="placeholder" />
 				<view class="xs" :class="{'active': currentClass}" @tap="showPassWord"></view>
 			</view>
+			<view class="regist-form-item">
+				<view class="mm"></view>
+				<input type="text" :password="!currentClass1" :placeholder="i18n.login.lang91_1" v-model="current.payPass" placeholder-class="placeholder" />
+				<view class="xs" :class="{'active': currentClass1}" @tap="showPassWord1"></view>
+			</view>
+			<view class="regist-form-item">
+				<view class="mm"></view>
+				<input type="text" :password="!currentClass1" :placeholder="i18n.login.lang91_2" v-model="current.payPass1" placeholder-class="placeholder" />
+				<view class="xs" :class="{'active': currentClass1}" @tap="showPassWord1"></view>
+			</view>
 			<view class="regist-form-btn gradient-blue" @tap="regist">
 				<text>{{i18n.login.lang88}}</text>
 			</view>
@@ -42,11 +52,14 @@
 				yzHtml: true,        
 				timer: '',               //定时器
 				currentClass: false,
+				currentClass1: false,
 				current: {
 					phone: '',
 					invite: '',
 					password: '',
 					password1: '',
+					payPass: '',
+					payPass1: '',
 					code: '',
 				}
 			}
@@ -57,27 +70,34 @@
 		methods: {
 			regist(){
 				let { current } = this;
-				let { password, password1 } = current
-				if(password == password1){
-					this.uniRequest({
-						url: 'register',
-						data: {
-							...current
-						},
-						noToken: true
-					}).then(res => {
-						if(res){
-							uni.navigateTo({
-								url: '/pages/login/login'
-							})
-						}
-					})
-				}else{
+				let { password, password1, payPass, payPass1 } = current
+				if(password !== password1){
 					uni.showToast({
 						title: '两次密码不一致，请重新输入',
 						icon: 'none'
 					})
+					return
 				}
+				if(payPass !== payPass1){
+					uni.showToast({
+						title: '交易密码不一致，请重新输入',
+						icon: 'none'
+					})
+					return
+				}
+				this.uniRequest({
+					url: 'register',
+					data: {
+						...current
+					},
+					noToken: true
+				}).then(res => {
+					if(res){
+						uni.navigateTo({
+							url: '/pages/login/login'
+						})
+					}
+				})
 			},
 			getCode(){
 				// 获取验证码
@@ -117,6 +137,10 @@
 			showPassWord(){
 				// 显示明文密码
 				this.currentClass = !this.currentClass
+			},
+			showPassWord1(){
+				// 显示明文密码
+				this.currentClass1 = !this.currentClass1
 			}
 		},
 		computed: {  

@@ -13,7 +13,7 @@
 					</view>
 					<view class="form-item">
 						<label>{{i18n.exchange.lang25}}:</label>
-						<input class="shrink" type="number" v-model="current.from_amount?calc:''" placeholder="0.00" disabled="true" />
+						<input class="shrink" type="number" v-model="current.from_amount?calc:''" placeholder="0.000000" disabled="true" />
 					</view>
 					<view class="form-item">
 						<input type="text" v-model="current.paypass" :password="active" :placeholder="i18n.exchange.lang26" />
@@ -46,6 +46,7 @@
 		},
 		onLoad() {
 			this.getData()
+			this.getRate()
 		},
 		components:{
 			HeaderBar
@@ -84,6 +85,14 @@
 					this.indexData = res.result.acc.QUSD
 				})
 			},
+			getRate(){
+				this.uniRequest({
+					url: 'getExchangeRatio',
+					method: 'GET'
+				}).then(res => {
+					this.rate = res.result.qusd
+				})
+			},
 			addClass(classname){
 				this[classname] = !this[classname]
 			}
@@ -93,7 +102,7 @@
 				return this.$t('index')  
 			},
 			calc(){
-				return this.current.from_amount
+				return (this.current.from_amount * this.rate).toFixed(6)
 			}
 		}
 	}

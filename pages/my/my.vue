@@ -1,8 +1,6 @@
 <template>
 	<view class="my">
-		<header-bar :isBack="isBack" :isBg="isBg" :isSlot="isSlot" :title="i18n.tabbar.my">
-			<text slot="text" @tap="gotoPage('authentication')">{{i18n.header.header27}}</text>
-		</header-bar>
+		<header-bar :isBack="isBack" :isBg="isBg" :title="i18n.tabbar.my"></header-bar>
 		<view class="content" :class="{'top': i18n.lang}">
 			<view class="userinfo">
 				<view class="head-image">
@@ -95,6 +93,11 @@
 					<view class="operation-item"></view>
 				</view>
 			</view>
+			<view class="authentication">
+				<view class="operation-btn gradient-violet" @tap="gotoPage('authentication')">
+					<text>{{i18n.header.header27}}</text>
+				</view>
+			</view>
 			<view class="operation-btn-wrap">
 				<view class="operation-btn gradient-blue" @tap="logOut">
 					<text>{{i18n.my.lang48}}</text>
@@ -131,7 +134,6 @@
 				isBg: true,       //显示背景
 				modalActive: false,    //modal弹出
 				userInfo: '',
-				isSlot: true,
 			}
 		},
 		components: {
@@ -357,6 +359,17 @@ uni-page-body{
 						height: 52rpx;
 					}
 				}
+			}
+		}
+		.authentication{
+			margin-bottom: 24rpx;
+			.operation-btn{
+				height: 104rpx;
+				line-height: 104rpx;
+				border-radius: 8rpx;
+				text-align: center;
+				font-size: $fontG;
+				color: $colorA;
 			}
 		}
 		.operation-btn-wrap{

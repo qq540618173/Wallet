@@ -68,7 +68,7 @@
 			.title{
 				text-align: center;
 				color: #FFFFFF;
-				font-size: 32rpx;
+				font-size: $fontG;
 				flex: 1;
 			}
 			.right{
@@ -77,7 +77,7 @@
 			}
 			.isslot{
 				position: absolute;
-				font-size: $fontI;
+				font-size: $fontG;
 				color: $colorA;
 				right: 30rpx;
 			}

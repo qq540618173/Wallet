@@ -102,7 +102,6 @@
 					default:
 						url = 'upPassword'
 				}
-				console.log(url)
 				this.uniRequest({
 					url,
 					data: {

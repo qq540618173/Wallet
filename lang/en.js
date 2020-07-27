@@ -19,7 +19,10 @@ export default {
 			lang12: 'Save the picture',
 			lang13: 'Copy the address',
 			lang14: 'Copy the Invite code',
-			lang15: 'QUSDThe wallet address'
+			lang15: 'QUSDThe wallet address',
+			lang15_1: 'Stop mining, you will not generate any income, the principal will automatically return to your account!',
+			lang15_2: 'Cancel',
+			lang15_3: 'Confirm',
 		},
 		withdrawal: {
 			//提币
@@ -124,6 +127,8 @@ export default {
 			lang89: 'Please enter a new login password',
 			lang90: 'Please enter a new login password again',
 			lang91: 'modify',
+			lang91_1: 'Please enter transaction password',
+			lang91_2: 'Please confirm the transaction password',
 		},
 		history: {
 			history0: 'recharge',
@@ -136,9 +141,9 @@ export default {
 			history7: 'dynamic awards',
 			history8: 'monthly award',
 			history9: 'quarterly awards',
-			history10: 'background recharge',
-			history11: 'static rewards',
-			history12: 'mining out',
+			history10: 'recharge',
+			history11: 'Automatic repurchase of static qusd income',
+			history12: 'Qusd principal return account',
 			history13: 'appointment rejection',
 			history14: 'balance',
 			history15: 'None Data',
