@@ -7,7 +7,9 @@
 					<view class="datetime">{{item.create_time}}</view>
 					<view class="history-box">
 						<view class="top">
-							<text>{{i18n.history['history'+item.type]}}</text>
+							<text v-if="item.is_me == 0">{{i18n.history['history'+item.type]}}</text>
+							<text v-if="item.is_me == 1">{{i18n.history.history3 + item.remark}}</text>
+							<text v-if="item.is_me == 2">{{i18n.history.history3_1 + item.remark + i18n.history.history3_2}}</text>
 							<text>{{i18n.history.history14}}</text>
 						</view>
 						<view class="bot">

@@ -70,17 +70,15 @@
 						...current
 					}
 				}).then(res => {
+					this.current = {
+						address: '',
+						amount: '',
+						paypass: '',
+					}
+					this.getData()
 					uni.showToast({
 						title: res.message,
-						icon: 'none',
-						success: () => {
-							this.getData()
-							this.current = {
-								address: '',
-								amount: '',
-								paypass: '',
-							}
-						}
+						icon: 'none'
 					})
 				})
 			},
