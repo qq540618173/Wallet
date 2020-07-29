@@ -7,6 +7,7 @@ export default {
 			lang2: '提币',
 			lang3: '兑换',
 			lang4: '邀请码',
+			lang4_1: '公告栏',
 			lang5: 'title',
 			lang6: '参与挖矿',
 			lang7: '停止挖矿',

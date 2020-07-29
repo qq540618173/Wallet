@@ -7,6 +7,7 @@ export default {
 			lang2: 'Mention money',
 			lang3: 'Excha-nge',
 			lang4: 'Invite code',
+			lang4_1: 'Notice',
 			lang5: 'subtitle',
 			lang6: 'Involved in mining',
 			lang7: 'Stop mining',

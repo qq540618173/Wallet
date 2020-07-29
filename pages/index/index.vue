@@ -28,7 +28,7 @@
 				</view>
 				<view class="notice">
 					<view class="notice-text">
-						<text>公告栏</text>
+						<text>{{i18n.index.lang4_1}}</text>
 					</view>
 					<view class="notice-box">
 						<view class="uni-padding-wrap">

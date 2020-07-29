@@ -90,7 +90,7 @@
 				        const tempFilePaths = chooseImageRes.tempFilePaths
 						this.verifiedInfo[key] = tempFilePaths[0]
 						uni.uploadFile({
-							url: 'http://103.80.134.39:8878/api/upload',
+							url: 'http://qusdwallet.me/api/upload',
 							header: {
 								'Access-Token': uni.getStorageSync('userInfo').token
 							},

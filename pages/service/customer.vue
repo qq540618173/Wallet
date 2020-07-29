@@ -1,7 +1,7 @@
 <template>
 	<view class="customer">
 		<header-bar :isBack="isBack" :title="i18n.header.header10"></header-bar>
-		<web-view :webview-styles="webviewStyles" src="http://103.80.134.39:8878/customer_service.html"></web-view>
+		<web-view :webview-styles="webviewStyles" src="http://qusdwallet.me/customer_service.html"></web-view>
 	</view>
 </template>
 

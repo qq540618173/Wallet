@@ -2,7 +2,8 @@ function uniRequest(obj){
 	return new Promise((resolve, reject) => {
 		
 		// 初始化参数
-		let baseUrl = 'http://103.80.134.39:8878/api/'
+		let baseUrl = 'http://qusdwallet.me/api/'     //正式
+		// let baseUrl = 'http://103.80.134.39:8878/api/'     //测试
 		let url = baseUrl + obj.url,
 		method = obj.method || 'POST',
 		data = obj.data || {},

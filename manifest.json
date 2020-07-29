@@ -1,5 +1,5 @@
 {
-    "name" : "wallet",
+    "name" : "QUSD",
     "appid" : "__UNI__7BF8D0A",
     "description" : "",
     "versionName" : "1.0.0",
@@ -102,6 +102,6 @@
         "devServer" : {
             "https" : false
         },
-        "domain" : "http://103.80.134.39:8878"
+        "domain" : "http://qusdwallet.me"
     }
 }

@@ -41,10 +41,10 @@
 			</view>
 			<view class="check">
 				<view class="check-left" v-if="item.children" v-show="!item.onOff" @tap="item.onOff = !item.onOff">
-					<text>查看下一代</text>
+					<text>{{i18n.my.lang95}}</text>
 				</view>
 				<view class="check-right" v-show="item.onOff" @tap="item.onOff = !item.onOff">
-					<text>收起</text>
+					<text>{{i18n.my.lang96}}</text>
 				</view>
 			</view>
 			<treelist v-if="item.children" v-show="item.onOff" :dataList="item.children"></treelist>
