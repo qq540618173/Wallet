@@ -5,7 +5,7 @@
 		</header-bar>
 		<view class="content">
 			<view class="header-data">
-				<view v-for="(item, index) in indexData.acc" :key="index">{{index}}:{{item}}<text></text></view>
+				<view v-for="(item, index) in indexData.acc" :key="index">{{index}}: {{item}}<text></text></view>
 			</view>
 			<view class="operation-wrap">
 				<view class="operation-item gradient1" @tap="gotoPage('recharge')">
@@ -77,33 +77,35 @@
 			</view>
 		</view>
 		<tabbar :isCurrent="1"></tabbar>
-		<view class="mask" v-if="modalActive"></view>
-		<view class="modal" :class="{'active': modalActive}">
-			<view class="title">
-				<text>{{i18n.index.lang7}}</text>
-			</view>
-			<view class="form-item">
-				<input type="text" v-model="payPass" :password="active" :placeholder="i18n.my.lang73" />
-				<view class="password" :class="{'active': !active}" @tap="addClass('active')"></view>
-			</view>
-			<view class="modal-tips">
-				<text>{{i18n.index.lang15_1}}</text>
-			</view>
-			<view class="operation-wrap">
-				<view class="operation-btn gradient-green" @tap="cancel">
-					<text>{{i18n.index.lang15_2}}</text>
+		<modal :modalActive="modalActive">
+			<view slot="modal-content">
+				<view class="title">
+					<text>{{i18n.index.lang7}}</text>
 				</view>
-				<view class="operation-btn gradient-blue" @tap="stopMine">
-					<text>{{i18n.index.lang15_3}}</text>
+				<view class="form-item">
+					<input type="text" v-model="payPass" :password="active" :placeholder="i18n.my.lang73" />
+					<view class="password" :class="{'active': !active}" @tap="addClass('active')"></view>
+				</view>
+				<view class="modal-tips">
+					<text>{{i18n.index.lang15_1}}</text>
+				</view>
+				<view class="operation-wrap">
+					<view class="operation-btn gradient-green" @tap="cancel">
+						<text>{{i18n.index.lang15_2}}</text>
+					</view>
+					<view class="operation-btn gradient-blue" @tap="stopMine">
+						<text>{{i18n.index.lang15_3}}</text>
+					</view>
 				</view>
 			</view>
-		</view>
+		</modal>
 	</view>
 </template>
 
 <script>
 	import HeaderBar from '../../components/header-bar.vue'
 	import Tabbar from '../../components/tabbar.vue'
+	import Modal from '../../components/modal.vue'
 	export default {
 		data() {
 			return {
@@ -121,7 +123,8 @@
 		},
 		components: {
 			HeaderBar,
-			Tabbar
+			Tabbar,
+			Modal
 		},
 		onLoad() {
 			this.getData()
@@ -425,32 +428,7 @@ uni-page-body{
 			}
 		}
 	}
-	.mask{
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0,0,0, .4);
-		z-index: 998;
-	}
 	.modal{
-		width: 100vw;
-		padding: 42rpx 30rpx 48rpx;
-		border-radius: 20rpx 20rpx 0rpx 0rpx;
-		background-color: $colorC;
-		position: fixed;
-		bottom: 100rpx;
-		z-index: 999;
-		box-shadow: 0 0 20rpx #000000;
-		box-sizing: border-box;
-		transform: translateY(200%);
-		transition: all 0.5s;
-		&.active{
-			display: block;
-			transform: translateY(0);
-			transition: all 0.5s;
-		}
 		.title{
 			text-align: center;
 			font-size: $fontE;

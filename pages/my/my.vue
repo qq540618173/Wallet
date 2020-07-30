@@ -108,24 +108,26 @@
 			</view>
 		</view>
 		<tabbar :isCurrent="4"></tabbar>
-		<view class="mask" v-if="modalActive"></view>
-		<view class="modal" :class="{'active': modalActive}">
-			<view class="language-item" @tap="changeLanguage('zh_CN')">
-				<text>简体中文</text>
+		<modal :modalActive="modalActive">
+			<view slot="modal-content">
+				<view class="language-item" @tap="changeLanguage('zh_CN')">
+					<text>简体中文</text>
+				</view>
+				<view class="language-item" @tap="changeLanguage('en_US')">
+					<text>English</text>
+				</view>
+				<view class="language-cancel" @tap="cancelLanguage">
+					<text>取消</text>
+				</view>
 			</view>
-			<view class="language-item" @tap="changeLanguage('en_US')">
-				<text>English</text>
-			</view>
-			<view class="language-cancel" @tap="cancelLanguage">
-				<text>取消</text>
-			</view>
-		</view>
+		</modal>
 	</view>
 </template>
 
 <script>
 	import HeaderBar from '../../components/header-bar.vue'
 	import Tabbar from '../../components/tabbar.vue'
+	import Modal from '../../components/modal.vue'
 	export default {
 		data() {
 			return {
@@ -138,7 +140,8 @@
 		},
 		components: {
 			HeaderBar,
-			Tabbar
+			Tabbar,
+			Modal
 		},
 		onLoad() {
 			let userInfo = uni.getStorageSync('userInfo')
@@ -390,31 +393,7 @@ uni-page-body{
 			}
 		}
 	}
-	.mask{
-		position: fixed;
-		top: 0;
-		left: 0;
-		right: 0;
-		bottom: 0;
-		background: rgba(0,0,0, .4);
-		z-index: 998;
-	}
 	.modal{
-		width: 100vw;
-		padding-top: 46rpx;
-		border-radius: 20rpx 20rpx 0rpx 0rpx;
-		background-color: $colorC;
-		position: fixed;
-		bottom: 100rpx;
-		z-index: 999;
-		box-shadow: 0 0 20rpx #000000;
-		transform: translateY(200%);
-		transition: all 0.5s;
-		&.active{
-			display: block;
-			transform: translateY(0);
-			transition: all 0.5s;
-		}
 		.language-item{
 			height: 114rpx;
 			line-height: 114rpx;

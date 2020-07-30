@@ -6,17 +6,17 @@
 				<view class="data-wrap-item">
 					<image src="../../static/images/icon20.png"></image>
 					<text class="label">{{i18n.data.lang32}}:</text>
-					<text class="count">{{dataList.pool?dataList.pool.total:0.00}}</text>
+					<text class="count">{{dataList.pool?dataList.pool.total:'0.000000'}}</text>
 				</view>
 				<view class="data-wrap-item">
 					<image src="../../static/images/icon21.png"></image>
 					<text class="label">{{i18n.data.lang33}}:</text>
-					<text class="count">{{dataList.pool?dataList.pool.market:0.00}}</text>
+					<text class="count">{{dataList.pool?dataList.pool.market:'0.000000'}}</text>
 				</view>
 				<view class="data-wrap-item">
 					<image src="../../static/images/icon22.png"></image>
 					<text class="label">{{i18n.data.lang34}}:</text>
-					<text class="count">{{dataList.pool?dataList.pool.released:0.00}}</text>
+					<text class="count">{{dataList.pool?dataList.pool.released:'0.000000'}}</text>
 				</view>
 			</view>
 			<view class="count-wrap">
@@ -27,7 +27,7 @@
 							<text>{{i18n.data.lang36}}</text>
 						</view>
 						<view class="bot">
-							<text>{{dataList.community?dataList.community.recom:0.00}}</text>
+							<text>{{dataList.community?dataList.community.recom:'0.000000'}}</text>
 						</view>
 					</view>
 					<view class="count-wrap-item">
@@ -35,7 +35,7 @@
 							<text>{{i18n.data.lang37}}</text>
 						</view>
 						<view class="bot">
-							<text>{{dataList.community?dataList.community.award:0.00}}</text>
+							<text>{{dataList.community?dataList.community.award:'0.000000'}}</text>
 						</view>
 					</view>
 				</view>
@@ -43,20 +43,24 @@
 				<view class="number-wrap">
 					<view class="number-item">
 						<text class="left">{{i18n.data.lang38}}:</text>
-						<text class="right">{{dataList.team?dataList.team.poolTotal:0.00}}</text>
+						<text class="right">{{dataList.team?dataList.team.poolTotal:'0.000000'}}</text>
 					</view>
 					<view class="number-item">
 						<text class="left">{{i18n.data.lang39}}:</text>
-						<text class="right">{{dataList.team?dataList.team.last_month:0.00}}</text>
+						<text class="right">{{dataList.team?dataList.team.last_month:'0.000000'}}</text>
 					</view>
 					<view class="number-item">
 						<text class="left">{{i18n.data.lang40}}:</text>
-						<text class="right">{{dataList.team?dataList.team.addPool:0.00}}</text>
+						<text class="right">{{dataList.team?dataList.team.addPool:'0.000000'}}</text>
 					</view>
 				</view>
 				<view class="operation">
-					<view class="operation-btn gradient-violet" @tap="getPrize('getMonthPrize')">{{i18n.data.lang41}}</view>
-					<view class="operation-btn gradient-green" @tap="getPrize('getQuartePrize')">{{i18n.data.lang42}}</view>
+					<view class="operation-btn gradient-violet" @tap="getPrize('getMonthPrize')">
+						<text :class="{'isget': dataList.award && dataList.award.is_month == 1}">{{i18n.data.lang41}}</text>
+					</view>
+					<view class="operation-btn gradient-green" @tap="getPrize('getQuartePrize')">
+						<text :class="{'isget': dataList.award && dataList.award.is_quarer == 1}">{{i18n.data.lang42}}</text>
+					</view>
 				</view>
 			</view>
 			<swiper class="swiper" autoplay="autoplay">
@@ -116,6 +120,9 @@
 						title: res.message,
 						icon: 'none'
 					})
+					if(res.status == 200){
+						this.getData()
+					}
 				})
 			}
 		},
@@ -289,6 +296,20 @@ uni-page-body{
 					border-radius: 8rpx;
 					&:first-child{
 						margin-right: 50rpx;
+					}
+				}
+				.isget{
+					position: relative;
+					&::after{
+						position: absolute;
+						content: "";
+						display: block;
+						width: 12rpx;
+						height: 12rpx;
+						border-radius: 50%;
+						background-color: #FF4436;
+						right: -6rpx;
+						top: 4rpx;
 					}
 				}
 			}
