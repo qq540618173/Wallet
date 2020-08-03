@@ -87,7 +87,7 @@ export default {
 			lang65: 'Confirm transfer',
 			lang66: 'Investment amount',
 			lang67: 'Registration time',
-			lang68: 'Team rewards',
+			lang68: 'Recommendation rewards',
 			lang69: 'The number of team',
 			lang70: 'people',
 			lang71: 'generation',

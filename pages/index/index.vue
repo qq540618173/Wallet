@@ -4,7 +4,7 @@
 			<text slot="text" @tap="gotoPage('history')">{{i18n.header.header26}}</text>
 		</header-bar>
 		<view class="content">
-			<view class="header-data">
+			<view class="header-data" v-if="indexData.acc">
 				<view v-for="(item, index) in indexData.acc" :key="index">{{index}}: {{item}}<text></text></view>
 			</view>
 			<view class="operation-wrap">
@@ -63,15 +63,17 @@
 					</view>
 				</view>
 				<view class="tips">
-					<text>{{i18n.index.lang8}}:{{indexData.sub_pool}}</text>
-					<text>{{i18n.index.lang8_1}}:{{indexData.queue_pool}}</text>
+					<text>{{i18n.index.lang8}}：{{indexData.sub_pool}}</text>
 				</view>
 				<view class="amount">
 					<view class="top">{{i18n.index.lang9}}</view>
 					<view class="mid">{{indexData.pool?indexData.pool.amount:0}}</view>
+					<view class="mid2">
+						<text>{{i18n.index.lang8_1}}：{{indexData.queue_pool}}</text>
+					</view>
 					<view class="bot">
 						<image src="../../static/images/icon13.png"></image>
-						<text>{{i18n.index.lang10}}: {{indexData.pool?indexData.pool.day:0}} {{i18n.index.lang11}}</text>
+						<text>{{i18n.index.lang10}}：{{indexData.pool?indexData.pool.day:0}} {{i18n.index.lang11}}</text>
 					</view>
 				</view>
 			</view>
@@ -233,7 +235,7 @@ uni-page-body{
 		.operation-wrap{
 			display: flex;
 			justify-content: space-between;
-			margin-top: 40rpx;
+			padding-top: 40rpx;
 			.operation-item{
 				flex: 1;
 				display: flex;
@@ -402,7 +404,7 @@ uni-page-body{
 				background-color: #1C1F2A;
 				border-radius: 8rpx;
 				text-align: center;
-				padding: 28rpx 0 26rpx;
+				padding: 40rpx 0;
 				.top{
 					color: $colorB;
 					font-size: $fontJ;
@@ -412,8 +414,16 @@ uni-page-body{
 					font-size: $fontZ;
 					margin-top: 8rpx;
 				}
+				.mid2{
+					font-size: $fontJ;
+					color: $colorE;
+					margin: 14rpx 30rpx 0;
+					padding: 20rpx 0;
+					border-radius: 8rpx;
+					background-color: #13151B;
+				}
 				.bot{
-					margin-top: 48rpx;
+					margin-top: 40rpx;
 					color: $colorF;
 					font-size: $fontJ;
 					display: flex;

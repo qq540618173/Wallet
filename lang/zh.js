@@ -87,7 +87,7 @@ export default {
 			lang65: '确认转账',
 			lang66: '投资金额',
 			lang67: '注册时间',
-			lang68: '团队奖励',
+			lang68: '推荐奖励',
 			lang69: '团队人数',
 			lang70: '人',
 			lang71: '代',
