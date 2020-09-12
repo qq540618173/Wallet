@@ -90,7 +90,7 @@
 					url: 'getExchangeRatio',
 					method: 'GET'
 				}).then(res => {
-					this.rate = res.result.usdt
+					this.rate = res.result.USDT
 				})
 			},
 			addClass(classname){

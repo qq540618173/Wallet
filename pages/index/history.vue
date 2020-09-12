@@ -2,8 +2,8 @@
 	<view class="history">
 		<header-bar :title="i18n.header.header26"></header-bar>
 		<view class="container">
-			<scroll-view class="scrollview" scroll-y="true" lower-threshold="100" @scrolltolower="loadMore">
-				<view class="history-wrap" v-for="(item, index) in historyList" :key="index" v-if="historyList.length">
+			<scroll-view class="scrollview" scroll-y="true" lower-threshold="100" @scrolltolower="loadMore" v-if="historyList.length">
+				<view class="history-wrap" v-for="(item, index) in historyList" :key="index">
 					<view class="datetime">{{item.create_time}}</view>
 					<view class="history-box">
 						<view class="top">

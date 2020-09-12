@@ -5,7 +5,7 @@
 			<view class="download-wrap">
 				<view class="logo">
 					<image src="../../static/images/icon32.png"></image>
-					<text>{{i18n.my.lang58}}</text>
+					<text>{{env == 'ios'?i18n.my.lang58_2:i18n.my.lang58_1}}</text>
 				</view>
 				<view class="link">
 					<text>{{env == 'ios'?address.ios_url:address.android_url}}</text>

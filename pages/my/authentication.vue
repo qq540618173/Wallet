@@ -14,7 +14,7 @@
 				<input type="text" v-model="verifiedInfo.username" placeholder-class="placeholder" :placeholder="i18n.my.lang102" :disabled="verifiedInfo.status>0" />
 			</view>
 			<view class="top-form">
-				<input type="number" v-model="verifiedInfo.idcart" placeholder-class="placeholder" :placeholder="i18n.my.lang103" :disabled="verifiedInfo.status>0" />
+				<input type="text" v-model="verifiedInfo.idcart" placeholder-class="placeholder" :placeholder="i18n.my.lang103" :disabled="verifiedInfo.status>0" />
 			</view>
 			<view class="title mt46">
 				<view class="left">
